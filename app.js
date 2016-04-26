@@ -53,13 +53,17 @@ mongoose.connection.once('open', function(){
 
   //TODO set up routes, middleware, error handlers.
 
-  app.use(function(req, res, next){
-    req.db={};
-    req.db.tasks = db.collection('tasks');
-  });
-  app.use('/', routes);
+  // app.use(function(req, res, next){
+  //   req.db={};
+
+  // Don't need to do this with Mongoose,
+  // only if will be useful when using MongoDB directly.  
+  //   req.db.tasks = db.collection('tasks');
+  //
+  // });
+  //app.use('/', routes);
   app.use('/about', about);
-  app.use('/index', tasks);
+  app.use('/tasks', tasks);
 
 // catch 404 and forward to error handler
   app.use(function(req, res, next) {
